@@ -236,6 +236,17 @@ kubectl get hpa -w
 Pods will gradually return to the minimum replica count.
 
 ---
+##Remark 
+* grafana query :
+
+sum by (pod) (
+  rate(
+    container_cpu_usage_seconds_total{
+      namespace="default",
+      pod=~"demo-app-.*"
+    }[30s]
+  )
+)
 
 ## Conclusion
 
